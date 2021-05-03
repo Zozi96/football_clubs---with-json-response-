@@ -1,0 +1,50 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pais</th>
+            <th>Liga</th>
+            <th>Clubs</th>
+        </tr>
+        </thead>
+        <tbody id="body">
+        <tr>
+            <th>1</th>
+            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester
+                City</a> <strong>(C)</strong>
+            </td>
+            <td>38</td>
+            <td>23</td>
+        </tr>
+        </tbody>
+    </table>{% endblock %}
+
+{% block extrajs %}
+    <script>
+        window.onload = () => {
+            const tbody = document.getElementById('body')
+            const fetchData = async () => {
+                let url = '/api/list/ligas/'
+                const res = await fetch(url)
+                const data = await res.json()
+                const content = data.map(i => `
+                <tr>
+                    <th>${i.id}</th>
+                    <th>${i.country}</th>
+                    <th>${i.league}</th>
+                    <th>
+                        <ul>
+                            <li>${i.clubs.club_name}</li>
+                        </ul>
+                    </th>
+                </tr>
+                `).join('')
+                tbody.innerHTML = content
+            }
+            fetchData()
+        }
+    </script>
+{% endblock %}
