@@ -29,7 +29,9 @@ LOCAL_APPS = [
     'apps.club',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
 
 INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS
 

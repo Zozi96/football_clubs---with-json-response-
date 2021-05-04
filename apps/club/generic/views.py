@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
 
-from .models import League
+from apps.club.models import League
 
 
 class LeaguesApiList(View):
